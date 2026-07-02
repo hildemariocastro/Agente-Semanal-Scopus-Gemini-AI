@@ -1,108 +1,155 @@
-🧠 Overview
+# AI Research Intelligence System
 
-AI Research Intelligence System is a modular automation framework designed to monitor, process and summarize scientific publications related to Penaeus vannamei / Litopenaeus vannamei.
+> An automated research intelligence framework for monitoring, processing, summarizing, and reporting scientific publications on *Penaeus vannamei* and *Litopenaeus vannamei*.
 
-The system integrates:
+![Python](https://img.shields.io/badge/Python-3.10%2B-blue.svg)
+![License](https://img.shields.io/badge/License-MIT-green.svg)
+![Status](https://img.shields.io/badge/Status-Active-success.svg)
+![AI](https://img.shields.io/badge/Powered%20by-Google%20Gemini-orange.svg)
 
-Scientific APIs (Scopus & OpenAlex)
+---
 
-Generative AI (Google Gemini)
+# Overview
 
-Automated reporting
+The **AI Research Intelligence System** is a modular automation framework designed to continuously monitor scientific publications related to *Penaeus vannamei* (*Litopenaeus vannamei*), automatically process publication metadata, generate AI-powered technical summaries, maintain a persistent publication database, and distribute research reports via email.
 
-Persistent data storage
+The project integrates modern scientific APIs with Generative AI to transform raw scientific literature into structured, actionable research intelligence.
 
-Email notification pipeline
+---
 
-It transforms raw scientific publications into structured, actionable research intelligence.
+# Motivation
 
-🎯 Problem Statement
+Scientific production in aquaculture has grown exponentially over the last decade. Monitoring newly published articles manually has become increasingly difficult because it is:
 
-Scientific production in aquaculture grows continuously.
-Manual literature monitoring is:
+- Time-consuming
+- Difficult to maintain consistently
+- Prone to duplicated records
+- Hard to scale over long periods
 
-Time-consuming
+This project automates the complete literature surveillance workflow.
 
-Prone to duplication
+---
 
-Difficult to maintain consistently
+# Key Features
 
-Hard to scale
+- Automated scientific literature monitoring
+- Integration with Scopus API
+- Integration with OpenAlex API
+- AI-powered technical summaries using Google Gemini
+- Duplicate detection using DOI validation
+- Persistent publication database
+- Automated DOCX report generation
+- Email notification system
+- Modular architecture
+- Ready for scheduled execution
+- Easily expandable to additional research topics
 
-This system automates the entire process.
+---
 
-🏗 System Architecture
-Module 1 – Scopus + Gemini (Weekly Intelligence Report)
+# System Architecture
 
+```text
+                        +----------------------+
+                        |   Scientific APIs    |
+                        |----------------------|
+                        |  Scopus  | OpenAlex |
+                        +----------+-----------+
+                                   |
+                                   |
+                          Metadata Collection
+                                   |
+                                   ▼
+                      Duplicate Detection (DOI)
+                                   |
+                                   ▼
+                     Persistent Publication Storage
+                                   |
+                                   ▼
+                     Google Gemini AI Processing
+                                   |
+                                   ▼
+                     Technical Research Summaries
+                                   |
+                 +-----------------+-----------------+
+                 |                                   |
+                 ▼                                   ▼
+        Weekly DOCX Report                 Daily Email Alert
+```
+
+---
+
+# Modules
+
+## Module 1 — Weekly Intelligence Report
+
+Pipeline:
+
+```
 Scopus API
-→ Metadata extraction
-→ Abstract processing
-→ Gemini AI summarization
-→ Structured DOCX report
-→ Email distribution
+      ↓
+Metadata Extraction
+      ↓
+Abstract Processing
+      ↓
+Google Gemini
+      ↓
+Technical Summary
+      ↓
+DOCX Report
+      ↓
+Email Distribution
+```
 
-Module 2 – OpenAlex (Daily Monitoring Engine)
+Produces a research-grade weekly intelligence report containing:
 
+- publication metadata
+- AI-generated summaries
+- DOI references
+- practical implications
+- analytical insights
+
+---
+
+## Module 2 — Daily Monitoring Engine
+
+Pipeline:
+
+```
 OpenAlex API
-→ Date filtering
-→ DOI validation
-→ Duplicate detection
-→ CSV persistence layer
-→ Email alert
+       ↓
+Today's Publications
+       ↓
+DOI Validation
+       ↓
+Duplicate Detection
+       ↓
+CSV Database Update
+       ↓
+Email Notification
+```
 
-⚙ Core Capabilities
+Only newly published articles are reported.
 
-Automated scientific search
+---
 
-DOI-based duplicate prevention
+# Technology Stack
 
-AI-driven technical summarization
+| Layer | Technology |
+|---------|------------|
+| Language | Python |
+| Scientific Database | Scopus API |
+| Open Database | OpenAlex |
+| AI Engine | Google Gemini |
+| Data Processing | Pandas |
+| Report Generation | python-docx |
+| Storage | CSV (SQLite-ready) |
+| Notifications | SMTP (Gmail App Password) |
 
-Persistent research database
+---
 
-Scheduled execution
+# Project Structure
 
-Modular architecture
-
-Email notification engine
-
-Research-grade analytical summaries
-
-🧪 Technology Stack
-Layer	Technology
-Language	Python
-Scientific API	Scopus (Pybliometrics)
-Open API	OpenAlex
-AI Engine	Google Gemini (google.genai)
-Data Handling	Pandas
-Reporting	python-docx
-Storage	CSV (Expandable to SQLite)
-Notification	SMTP (Gmail App Password)
-🔍 AI Integration Strategy
-
-This project was developed using generative AI as an engineering assistant.
-
-The development process included:
-
-Author-defined architecture
-
-Manual prompt engineering
-
-Iterative debugging
-
-Validation of outputs
-
-API error handling adjustments
-
-Performance optimization
-
-Logical flow redesign when needed
-
-Generative AI was used as a productivity tool, not as a replacement for technical reasoning.
-
-All logic validation, testing, debugging and architectural decisions were performed by the author.
-
-📂 Project Structure
+```
 ai-research-intelligence/
 │
 ├── scopus_gemini_agent.py
@@ -116,105 +163,242 @@ ai-research-intelligence/
 ├── reports/
 │   └── Relatorio_Vannamei_YYYY-MM-DD.docx
 │
-└── logs/
+├── logs/
+│
+└── .gitignore
+```
 
-🚀 Installation
+---
+
+# Installation
+
+Clone the repository:
+
+```bash
+git clone https://github.com/yourusername/ai-research-intelligence.git
+```
+
+Enter the project folder:
+
+```bash
+cd ai-research-intelligence
+```
+
+Install dependencies:
+
+```bash
 pip install -r requirements.txt
+```
 
-🔐 Environment Configuration
+---
 
-Use environment variables instead of hardcoding secrets:
+# Environment Variables
 
-GEMINI_API_KEY=
-EMAIL_USER=
-EMAIL_PASSWORD=
+Never hardcode credentials.
 
-▶ Execution
-Run Weekly Scopus + Gemini Report
+Create a `.env` file containing:
+
+```text
+GEMINI_API_KEY=your_api_key
+
+EMAIL_USER=your_email@gmail.com
+
+EMAIL_PASSWORD=your_app_password
+
+SCOPUS_API_KEY=your_scopus_api_key
+```
+
+---
+
+# Usage
+
+## Weekly Scopus Intelligence Report
+
+```bash
 python scopus_gemini_agent.py
+```
 
-Run Daily OpenAlex Monitor
+Generates:
+
+- DOCX report
+- AI technical summaries
+- Email delivery
+
+---
+
+## Daily OpenAlex Monitoring
+
+```bash
 python openalex_daily_agent.py
+```
 
-⏱ Automation
+Checks:
 
-Supports:
+- new publications
+- duplicate DOIs
+- updates CSV database
+- sends notification email
 
-Windows Task Scheduler
+---
 
-Cron (Linux/Mac)
+# Output Examples
 
-Server deployment
+## Weekly Intelligence Report
 
-Cloud execution (future roadmap)
+- Microsoft Word (.docx)
+- Publication metadata
+- AI-generated technical summaries
+- DOI references
+- Practical implications for aquaculture
+- Research interpretation
 
-📄 Output Examples
-Weekly Intelligence Report
+---
 
-Structured DOCX
+## Daily Alert
 
-Technical analytical summary
+Contains only newly identified publications.
 
-Research-level interpretation
+Features:
 
-DOI references
+- DOI validation
+- Duplicate prevention
+- Automatic database update
+- Email notification
 
-Practical aquaculture implications
+---
 
-Daily Alert
+# Engineering Highlights
 
-New publications only
+- Modular architecture
+- AI-assisted scientific summarization
+- DOI-based duplicate detection
+- Robust SMTP authentication handling
+- API rate-limit awareness
+- Abstract length validation
+- Research-oriented prompt engineering
+- Easily scalable for multiple research topics
 
-Duplicate-proof
+---
 
-DOI-based filtering
+# AI Integration
 
-CSV updated automatically
+Generative AI was used as an engineering assistant throughout the development process.
 
-📊 Engineering Highlights
+Applications included:
 
-API rate-limit awareness
+- prompt engineering
+- code generation
+- debugging assistance
+- workflow optimization
+- API integration support
+- documentation drafting
 
-Duplicate prevention via DOI hash comparison
+All architectural decisions, validation, testing, debugging, and final implementation were designed and verified by the project author.
 
-Error-handling for SMTP authentication
+Generative AI functioned as a productivity tool rather than a substitute for technical reasoning.
 
-Modular prompt structure for research-grade summaries
+---
 
-Abstract-length validation before AI processing
+# Security
 
-Scalable design for multi-keyword expansion
+Security best practices implemented:
 
-🛡 Security Considerations
+- API keys are never stored in the repository
+- `.gitignore` excludes sensitive files
+- Gmail App Password authentication
+- Environment variable configuration
+- No credentials committed to version control
 
-No API keys stored in repository
+---
 
-.gitignore configured
+# Roadmap
 
-App Password required for email
+Future planned features include:
 
-Secrets managed via environment variables
+- SQLite persistence layer
+- PostgreSQL support
+- Multi-keyword monitoring
+- AI-based topic classification
+- Citation trend analysis
+- Interactive Streamlit dashboard
+- Docker container
+- Cloud deployment
+- ESG monitoring module
+- Automatic systematic review support
+- Semantic similarity search
+- Research recommendation engine
 
-📈 Roadmap
+---
 
-SQLite persistence layer
+# Contributing
 
-Multi-keyword monitoring
+Contributions are welcome.
 
-Research topic classification via AI
+If you would like to improve this project:
 
-Citation trend tracking
+1. Fork the repository.
+2. Create a feature branch.
 
-Streamlit dashboard
+```bash
+git checkout -b feature/new-feature
+```
 
-Docker containerization
+3. Commit your changes.
 
-Cloud deployment
+```bash
+git commit -m "Add new feature"
+```
 
-ESG monitoring module
+4. Push the branch.
 
-👨‍🔬 Author
+```bash
+git push origin feature/new-feature
+```
 
-Hildemario Castro
-Engineer | Aquaculture Research | AI Automation Developer
+5. Open a Pull Request.
 
+---
+
+# Citation
+
+If you use this project in academic research, please cite it appropriately.
+
+Example:
+
+```text
+Castro, H.
+AI Research Intelligence System.
+GitHub Repository.
+```
+
+---
+
+# License
+
+This project is licensed under the MIT License.
+
+See the `LICENSE` file for details.
+
+---
+
+# Author
+
+**Hildemario Castro**
+
+Aquaculture Researcher • Data Scientist • AI Automation Developer
+
+Areas of interest:
+
+- Aquaculture
+- Fisheries Science
+- Histology
+- Scientometrics
+- Artificial Intelligence
+- Machine Learning
+- Scientific Automation
+
+---
+
+## Acknowledgements
+
+This project was developed to support reproducible, automated scientific monitoring workflows for aquaculture research and demonstrates the integration of modern scientific databases, artificial intelligence, and research automation into a scalable intelligence framework.
